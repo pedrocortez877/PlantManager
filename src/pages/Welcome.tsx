@@ -1,12 +1,19 @@
 import React from 'react';
 import { Text, Image, TouchableOpacity, StyleSheet, SafeAreaView, Dimensions, View } from 'react-native';
+import { useNavigation } from '@react-navigation/core';
 import { Feather } from '@expo/vector-icons';
 
 import Watering from '../assets/watering.png';
 import colors from '../styles/colors';
 import fonts from '../styles/fonts';
 
-export function Welcome(){
+export function Welcome(){  
+  const navigation = useNavigation();
+  
+  function handleStart() {
+    navigation.navigate('UserIdentification');
+  }
+
   return(
     <SafeAreaView style={styles.container}>
       <View style={styles.wrapper}>
@@ -16,14 +23,18 @@ export function Welcome(){
           forma fácil
         </Text>
 
-        <Image source={Watering} style={styles.image} resizeMode="contain"/>
+        <Image 
+          source={Watering} 
+          style={styles.image} 
+          resizeMode="contain"
+        />
 
         <Text style={styles.subTitle}>
           Não esqueça de regar suas plantas. 
           Nós cuidamos de lembrar você sempre que precisar.
         </Text>
 
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity style={styles.button} onPress={handleStart}>
             <Feather name="chevron-right" style={styles.buttonIcon}/>
         </TouchableOpacity>
       </View>
